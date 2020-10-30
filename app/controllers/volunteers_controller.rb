@@ -17,7 +17,7 @@ class Api::V1::VolunteersController < ApplicationController
     def create
         vol = Volunteer.create!(vol_params)
         if vol.save
-            render json: admin
+            render json: vol
         else
             render json: {error: vol.errors.full_messages}, status: :not_acceptable
         end

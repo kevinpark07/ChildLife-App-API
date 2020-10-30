@@ -1,4 +1,4 @@
-class Api::V1::AdministratorsController < ApplicationController
+class AdministratorsController < ApplicationController
 
     def index 
         admins = Adminstrator.all

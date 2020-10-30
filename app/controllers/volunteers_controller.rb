@@ -1,4 +1,4 @@
-class Api::V1::VolunteersController < ApplicationController
+class VolunteersController < ApplicationController
     
     def index 
         vols = Volunteer.all

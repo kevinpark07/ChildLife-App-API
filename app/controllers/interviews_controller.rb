@@ -1,4 +1,4 @@
-class Api::V1::InterviewsController < ApplicationController
+class InterviewsController < ApplicationController
     
     def index 
         interview = Interview.all

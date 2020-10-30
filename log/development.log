@@ -486,3 +486,114 @@ FOREIGN KEY ("administrator_id")
   [1m[36mInterview Load (0.5ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" LIMIT $1[0m  [["LIMIT", 11]]
   [1m[36mAdministrator Load (0.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators" LIMIT $1[0m  [["LIMIT", 11]]
   [1m[36mVolunteer Load (0.4ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (8.8ms)[0m  [1m[35mCREATE DATABASE "Child_Life_API_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE DATABASE "Child_Life_API_test" ENCODING = 'unicode'[0m
+  [1m[35m (12.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1619546436715113690)[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (13.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1619546436715113690)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mAdministrator Load (0.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  [1m[35m (17.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Load (1.0ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."administrator_id" = $1[0m  [["administrator_id", 1]]
+  [1m[36mAdministrator Destroy (48.5ms)[0m  [1m[31mDELETE FROM "administrators" WHERE "administrators"."id" = $1[0m  [["id", 1]]
+  [1m[35m (8.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVolunteer Load (0.9ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mInterview Load (0.3ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdministrator Create (10.3ms)[0m  [1m[32mINSERT INTO "administrators" ("name", "age", "email", "password", "department", "position", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Annie Smith"], ["age", 32], ["email", "asmith1@nyp.org"], ["password", "1234"], ["department", "Child Life"], ["position", "Coordinator"], ["profile_image", "https://images.unsplash.com/photo-1573497491207-618cc224f243?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80.jpg"], ["created_at", "2020-10-30 03:54:05.299535"], ["updated_at", "2020-10-30 03:54:05.299535"]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mAdministrator Load (0.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Load (1.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."administrator_id" = $1[0m  [["administrator_id", 2]]
+  [1m[36mAdministrator Destroy (0.9ms)[0m  [1m[31mDELETE FROM "administrators" WHERE "administrators"."id" = $1[0m  [["id", 2]]
+  [1m[35m (13.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mVolunteer Load (0.9ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mInterview Load (0.3ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdministrator Create (0.5ms)[0m  [1m[32mINSERT INTO "administrators" ("name", "age", "email", "password", "department", "position", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Annie Smith"], ["age", 32], ["email", "asmith1@nyp.org"], ["password", "1234"], ["department", "Child Life"], ["position", "Coordinator"], ["profile_image", "https://images.unsplash.com/photo-1573497491207-618cc224f243?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80.jpg"], ["created_at", "2020-10-30 03:57:16.483874"], ["updated_at", "2020-10-30 03:57:16.483874"]]
+  [1m[35m (11.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (123.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Child_Life_API_development"[0m
+  [1m[35m (72.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Child_Life_API_test"[0m
+  [1m[35m (499.5ms)[0m  [1m[35mCREATE DATABASE "Child_Life_API_development" ENCODING = 'unicode'[0m
+  [1m[35m (148.6ms)[0m  [1m[35mCREATE DATABASE "Child_Life_API_test" ENCODING = 'unicode'[0m
+  [1m[35m (98.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (27.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1619546436715113690)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateVolunteers (20201028163135)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (36.5ms)[0m  [1m[35mCREATE TABLE "volunteers" ("id" bigserial primary key, "name" character varying, "age" integer, "email" character varying, "password" character varying, "approved" boolean, "profile_image" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201028163135"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAdministrators (20201028190516)
+  [1m[35m (11.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "administrators" ("id" bigserial primary key, "name" character varying, "age" integer, "email" character varying, "password" character varying, "department" character varying, "position" character varying, "profile_image" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201028190516"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInterviews (20201029022355)
+  [1m[35m (6.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (26.8ms)[0m  [1m[35mCREATE TABLE "interviews" ("id" bigserial primary key, "date" character varying, "time" character varying, "link" character varying, "notes" text, "volunteer_id" bigint NOT NULL, "administrator_id" bigint NOT NULL, CONSTRAINT "fk_rails_e3d59c5dda"
+FOREIGN KEY ("volunteer_id")
+  REFERENCES "volunteers" ("id")
+, CONSTRAINT "fk_rails_43afc8d32b"
+FOREIGN KEY ("administrator_id")
+  REFERENCES "administrators" ("id")
+)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX  "index_interviews_on_volunteer_id" ON "interviews"  ("volunteer_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_interviews_on_administrator_id" ON "interviews"  ("administrator_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201029022355"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-30 04:00:18.206698"], ["updated_at", "2020-10-30 04:00:18.206698"]]
+  [1m[35m (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1619546436715113690)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mAdministrator Load (0.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  [1m[36mVolunteer Load (0.6ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mInterview Load (7.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdministrator Create (0.8ms)[0m  [1m[32mINSERT INTO "administrators" ("name", "age", "email", "password", "department", "position", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Annie Smith"], ["age", 32], ["email", "asmith1@nyp.org"], ["password", "1234"], ["department", "Child Life"], ["position", "Coordinator"], ["profile_image", "https://images.unsplash.com/photo-1573497491207-618cc224f243?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80.jpg"], ["created_at", "2020-10-30 04:00:28.166213"], ["updated_at", "2020-10-30 04:00:28.166213"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVolunteer Create (0.8ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Brian Jewell"], ["age", 27], ["email", "bjewell111@gmail.com"], ["password", "1234"], ["approved", true], ["profile_image", "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/120594375_10159267444029131_7064634442067891781_o.jpg?_nc_cat=102&ccb=2&_nc_sid=ad2b24&_nc_ohc=ZZGmzoN_nlcAX9PQ_i4&_nc_ht=scontent-lga3-1.xx&oh=64043557365b5c3a77dd59e931ec60bb&oe=5FC0A1B1.jpg"], ["created_at", "2020-10-30 04:00:28.183202"], ["updated_at", "2020-10-30 04:00:28.183202"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVolunteer Create (0.4ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Jack Scordato"], ["age", 23], ["email", "jscordato12@gmail.com"], ["password", "1234"], ["approved", true], ["profile_image", "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80.jpg"], ["created_at", "2020-10-30 04:00:28.192737"], ["updated_at", "2020-10-30 04:00:28.192737"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVolunteer Create (0.4ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Natalie Rosen"], ["age", 18], ["email", "nrosen01@gmail.com"], ["password", "1234"], ["approved", true], ["profile_image", "https://images.unsplash.com/photo-1567131308618-79aa79b33cdd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60.jpg"], ["created_at", "2020-10-30 04:00:28.202335"], ["updated_at", "2020-10-30 04:00:28.202335"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mVolunteer Create (0.4ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Hannah Jung"], ["age", 22], ["email", "hannahbanana33@gmail.com"], ["password", "1234"], ["approved", true], ["profile_image", "https://images.unsplash.com/photo-1543267570-95d78122e7e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg"], ["created_at", "2020-10-30 04:00:28.211056"], ["updated_at", "2020-10-30 04:00:28.211056"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Create (9.6ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "link", "notes", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "11-16-2019"], ["time", "2:30 PM"], ["link", "https://us02web.zoom.us/j/81173493206?pwd=eDZnZXFiTlVJdFc5ekhQa2RrdXpOdz09"], ["notes", "He was a good candidate. He memorized all of the saftey protocols and he has a history working with children."], ["volunteer_id", 1], ["administrator_id", 1]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Create (0.7ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "link", "notes", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "05-16-2019"], ["time", "3:30 PM"], ["link", "https://us02web.zoom.us/j/81173493206?pwd=eDZnZXFiTlVJdFc5ekhQa2RrdXpOdz09"], ["notes", "Great candidate, was very impressed with his previous experiences. He's a student at Columbia and is looking to complete volunteer hours."], ["volunteer_id", 2], ["administrator_id", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Create (0.5ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "link", "notes", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "06-18-2020"], ["time", "1:00PM"], ["link", "https://us02web.zoom.us/j/81173493206?pwd=eDZnZXFiTlVJdFc5ekhQa2RrdXpOdz09"], ["notes", "She was a good candidate. She used to baby sit and has experince with autistic children. She seems eager to help."], ["volunteer_id", 3], ["administrator_id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mInterview Create (0.6ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "link", "notes", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["date", "12-02-2019"], ["time", "11:30 PM"], ["link", "https://us02web.zoom.us/j/81173493206?pwd=eDZnZXFiTlVJdFc5ekhQa2RrdXpOdz09"], ["notes", "She showed great understanding of all the protocols. She's a Pre-Med student at NYU and trying to get volunteer hours."], ["volunteer_id", 4], ["administrator_id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/volunteers" for ::1 at 2020-10-30 00:00:40 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by VolunteersController#index as HTML
+  [1m[36mVolunteer Load (0.8ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 35ms (Views: 19.8ms | ActiveRecord: 7.1ms | Allocations: 9693)
+
+

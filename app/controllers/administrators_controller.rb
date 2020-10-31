@@ -1,7 +1,7 @@
 class AdministratorsController < ApplicationController
 
     def index 
-        admins = Adminstrator.all
+        admins = Administrator.all
         render json: admins
     end
 

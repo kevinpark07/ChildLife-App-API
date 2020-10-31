@@ -15,7 +15,9 @@ class InterviewsController < ApplicationController
     end
 
     def create
-        interview = Interview.create!(admin_params)
+        volunteerObj = Volunteer.find(params[:volunteer_id])
+        admin = Administrator.all[0]
+        interview = Interview.create!(date: params[:date], time: params[:time], volunteer: volunteerObj, administrator: admin)
         if interview.save
             render json: interview
         else

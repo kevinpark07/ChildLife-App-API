@@ -15,7 +15,8 @@ class MeetingsController < ApplicationController
     end
 
     def create
-        meeting = Meeting.create!(meeting_params)
+        volun = Volunteer.find_by(id: params[:volunteer])
+        meeting = Meeting.create!(volunteer: volun, date: params[:date], time: params[:time], link: params[:link], patient_name: params[:patient_name], patient_age: params[:patient_age], patient_info: params[:patient_info])
         if meeting.save
             render json: meeting
         else

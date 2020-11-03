@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_022355) do
+ActiveRecord::Schema.define(version: 2020_11_02_212404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,25 @@ ActiveRecord::Schema.define(version: 2020_10_29_022355) do
   create_table "interviews", force: :cascade do |t|
     t.string "date"
     t.string "time"
-    t.string "link"
     t.text "notes"
     t.bigint "volunteer_id", null: false
     t.bigint "administrator_id", null: false
     t.index ["administrator_id"], name: "index_interviews_on_administrator_id"
     t.index ["volunteer_id"], name: "index_interviews_on_volunteer_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.string "patient_name"
+    t.integer "patient_age"
+    t.text "patient_info"
+    t.text "notes"
+    t.bigint "volunteer_id", null: false
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["volunteer_id"], name: "index_meetings_on_volunteer_id"
   end
 
   create_table "volunteers", force: :cascade do |t|
@@ -51,4 +64,5 @@ ActiveRecord::Schema.define(version: 2020_10_29_022355) do
 
   add_foreign_key "interviews", "administrators"
   add_foreign_key "interviews", "volunteers"
+  add_foreign_key "meetings", "volunteers"
 end

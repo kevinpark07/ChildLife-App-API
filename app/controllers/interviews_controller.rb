@@ -33,6 +33,7 @@ class InterviewsController < ApplicationController
         else
             render json: {error: interview.errors.full_messages}, status: :not_acceptable
         end
+
     end
 
     def destroy
@@ -44,7 +45,7 @@ class InterviewsController < ApplicationController
     private
     
     def interview_params
-        params.require(:interview).permit(:date, :time, :link, :notes)
+        params.require(:interview).permit(:date, :time, :notes)
     end
 
 end

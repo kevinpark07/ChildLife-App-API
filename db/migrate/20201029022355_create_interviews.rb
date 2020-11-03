@@ -3,7 +3,6 @@ class CreateInterviews < ActiveRecord::Migration[6.0]
     create_table :interviews do |t|
       t.string :date
       t.string :time
-      t.string :link
       t.text :notes
       t.belongs_to :volunteer, null: false, foreign_key: true
       t.belongs_to :administrator, null: false, foreign_key: true

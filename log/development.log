@@ -7353,3 +7353,35 @@ Completed 200 OK in 377ms (Views: 236.2ms | ActiveRecord: 138.6ms | Allocations:
 Completed 200 OK in 330ms (Views: 198.2ms | ActiveRecord: 123.9ms | Allocations: 7498)
 
 
+Started GET "/administrators/" for ::1 at 2020-11-07 23:05:50 -0500
+Started GET "/interviews/" for ::1 at 2020-11-07 23:05:50 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-07 23:05:50 -0500
+Started GET "/meetings/" for ::1 at 2020-11-07 23:05:50 -0500
+  [1m[35m (12.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (28.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by VolunteersController#index as */*
+  [1m[35m (23.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdministratorsController#index as */*
+  [1m[35m (18.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InterviewsController#index as */*
+Processing by MeetingsController#index as */*
+  [1m[36mVolunteer Load (24.5ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  [1m[36mInterview Load (3.7ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mMeeting Load (4.3ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (20.6ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 119ms (Views: 20.9ms | ActiveRecord: 88.1ms | Allocations: 20712)
+
+
+Completed 200 OK in 129ms (Views: 27.6ms | ActiveRecord: 99.2ms | Allocations: 33472)
+
+
+Completed 200 OK in 122ms (Views: 15.2ms | ActiveRecord: 103.2ms | Allocations: 27704)
+
+
+Completed 200 OK in 103ms (Views: 14.5ms | ActiveRecord: 82.0ms | Allocations: 18805)
+
+

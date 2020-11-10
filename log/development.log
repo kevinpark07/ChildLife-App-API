@@ -7385,3 +7385,583 @@ Completed 200 OK in 122ms (Views: 15.2ms | ActiveRecord: 103.2ms | Allocations: 
 Completed 200 OK in 103ms (Views: 14.5ms | ActiveRecord: 82.0ms | Allocations: 18805)
 
 
+Started GET "/volunteers/" for ::1 at 2020-11-08 19:36:56 -0500
+Started GET "/meetings/" for ::1 at 2020-11-08 19:36:56 -0500
+Started GET "/administrators/" for ::1 at 2020-11-08 19:36:56 -0500
+Started GET "/interviews/" for ::1 at 2020-11-08 19:36:56 -0500
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MeetingsController#index as */*
+  [1m[35m (39.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InterviewsController#index as */*
+  [1m[35m (10.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (108.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdministratorsController#index as */*
+Processing by VolunteersController#index as */*
+  [1m[36mInterview Load (200.7ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[36mMeeting Load (216.6ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (68.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (283.3ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 502ms (Views: 46.9ms | ActiveRecord: 433.4ms | Allocations: 14727)
+
+
+Completed 200 OK in 579ms (Views: 48.3ms | ActiveRecord: 513.8ms | Allocations: 27618)
+
+
+Completed 200 OK in 671ms (Views: 23.9ms | ActiveRecord: 642.4ms | Allocations: 24675)
+
+
+Completed 200 OK in 781ms (Views: 71.7ms | ActiveRecord: 697.2ms | Allocations: 43476)
+
+
+Started POST "/volunteers/" for ::1 at 2020-11-08 20:07:42 -0500
+Processing by VolunteersController#create as */*
+  Parameters: {"name"=>"Alex Foreman", "age"=>"27", "email"=>"alex@foreman.com", "password"=>"[FILTERED]", "profile_image"=>#<ActionDispatch::Http::UploadedFile:0x00007fb99a8530a8 @tempfile=#<Tempfile:/var/folders/yh/nc9qzdz96nv66x5jrq7tzzpm0000gn/T/RackMultipart20201108-53512-1kzquli.JPG>, @original_filename="Headshot.JPG", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"profile_image\"; filename=\"Headshot.JPG\"\r\nContent-Type: image/jpeg\r\n">}
+  [1m[35m (29.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[36mVolunteer Create (132.9ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Alex Foreman"], ["age", 27], ["email", "alex@foreman.com"], ["password", "1234"], ["approved", false], ["profile_image", "http://res.cloudinary.com/childlifeappmod5project/image/upload/v1604884065/uscwljhiddmhivx7xdc4.jpg"], ["created_at", "2020-11-09 01:07:45.827466"], ["updated_at", "2020-11-09 01:07:45.827466"]]
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[35m (119.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+Completed 200 OK in 3154ms (Views: 1.2ms | ActiveRecord: 281.4ms | Allocations: 160704)
+
+
+Started POST "/interviews/" for ::1 at 2020-11-08 20:08:16 -0500
+Processing by InterviewsController#create as */*
+  Parameters: {"date"=>"2020-11-09", "time"=>"09:00", "volunteer_id"=>13, "interview"=>{"date"=>"2020-11-09", "time"=>"09:00", "volunteer_id"=>13}}
+  [1m[36mVolunteer Load (2.4ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:18:in `create'
+  [1m[36mAdministrator Load (0.9ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/interviews_controller.rb:19:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[36mInterview Create (180.7ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", "2020-11-09"], ["time", "09:00"], ["volunteer_id", 13], ["administrator_id", 1]]
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+Completed 200 OK in 432ms (Views: 0.4ms | ActiveRecord: 186.2ms | Allocations: 6643)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 09:06:16 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 09:06:16 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 09:06:16 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 09:06:16 -0500
+Processing by VolunteersController#index as */*
+Processing by MeetingsController#index as */*
+Processing by InterviewsController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mVolunteer Load (39.9ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 87ms (Views: 46.7ms | ActiveRecord: 39.9ms | Allocations: 4107)
+
+
+  [1m[36mAdministrator Load (72.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  [1m[36mMeeting Load (36.5ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 101ms (Views: 27.5ms | ActiveRecord: 72.5ms | Allocations: 4648)
+
+
+  [1m[36mInterview Load (30.7ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+Completed 200 OK in 148ms (Views: 110.7ms | ActiveRecord: 36.5ms | Allocations: 9132)
+
+
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+Completed 200 OK in 203ms (Views: 172.0ms | ActiveRecord: 30.7ms | Allocations: 10372)
+
+
+Started GET "/volunteers/" for ::1 at 2020-11-09 10:19:35 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 10:19:35 -0500
+Started GET "/administrators/" for ::1 at 2020-11-09 10:19:35 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 10:19:35 -0500
+Processing by InterviewsController#index as */*
+Processing by MeetingsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mVolunteer Load (28.8ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mAdministrator Load (28.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  [1m[36mInterview Load (53.7ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+Completed 200 OK in 58ms (Views: 28.5ms | ActiveRecord: 28.8ms | Allocations: 3402)
+
+
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 71ms (Views: 42.5ms | ActiveRecord: 28.5ms | Allocations: 4450)
+
+
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mMeeting Load (28.6ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+Completed 200 OK in 118ms (Views: 57.9ms | ActiveRecord: 53.7ms | Allocations: 7360)
+
+
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 124ms (Views: 94.9ms | ActiveRecord: 28.6ms | Allocations: 9946)
+
+
+Started GET "/volunteers/" for ::1 at 2020-11-09 10:19:37 -0500
+Started GET "/administrators/" for ::1 at 2020-11-09 10:19:37 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 10:19:37 -0500
+Processing by AdministratorsController#index as */*
+Processing by VolunteersController#index as */*
+Started GET "/meetings/" for ::1 at 2020-11-09 10:19:37 -0500
+  [1m[36mVolunteer Load (5.1ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (8.0ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+Completed 200 OK in 21ms (Views: 15.2ms | ActiveRecord: 5.1ms | Allocations: 3073)
+
+
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 27ms (Views: 18.3ms | ActiveRecord: 8.0ms | Allocations: 4152)
+
+
+Processing by MeetingsController#index as */*
+Processing by InterviewsController#index as */*
+  [1m[36mMeeting Load (4.3ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 11.3ms | ActiveRecord: 4.3ms | Allocations: 4083)
+
+
+  [1m[36mInterview Load (13.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 7.1ms | ActiveRecord: 13.2ms | Allocations: 5689)
+
+
+Started GET "/volunteers/" for ::1 at 2020-11-09 12:54:30 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 12:54:30 -0500
+Started GET "/administrators/" for ::1 at 2020-11-09 12:54:30 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 12:54:30 -0500
+Processing by InterviewsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by MeetingsController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mAdministrator Load (23.4ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (38.8ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mMeeting Load (110.2ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+Completed 200 OK in 104ms (Views: 78.7ms | ActiveRecord: 23.4ms | Allocations: 1117)
+
+
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 152ms (Views: 112.1ms | ActiveRecord: 38.8ms | Allocations: 4730)
+
+
+Completed 200 OK in 184ms (Views: 71.8ms | ActiveRecord: 110.2ms | Allocations: 7735)
+
+
+  [1m[36mInterview Load (119.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+Completed 200 OK in 237ms (Views: 103.5ms | ActiveRecord: 119.1ms | Allocations: 10277)
+
+
+Started POST "/meetings/" for ::1 at 2020-11-09 13:29:02 -0500
+Processing by MeetingsController#create as */*
+  Parameters: {"date"=>"2020-11-14", "time"=>"13:30", "patient_name"=>"Teddy", "patient_age"=>"10", "patient_info"=>"Harry Potter fanatic.", "link"=>"zoomlink.com", "volunteer"=>4, "meeting"=>{"date"=>"2020-11-14", "time"=>"13:30", "patient_name"=>"Teddy", "patient_age"=>"10", "patient_info"=>"Harry Potter fanatic.", "link"=>"zoomlink.com"}}
+  [1m[36mVolunteer Load (17.3ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:18:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+  [1m[36mMeeting Create (45.8ms)[0m  [1m[32mINSERT INTO "meetings" ("date", "time", "patient_name", "patient_age", "patient_info", "volunteer_id", "link", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["date", "2020-11-14"], ["time", "13:30:00"], ["patient_name", "Teddy"], ["patient_age", 10], ["patient_info", "Harry Potter fanatic."], ["volunteer_id", 4], ["link", "zoomlink.com"], ["created_at", "2020-11-09 18:29:02.929723"], ["updated_at", "2020-11-09 18:29:02.929723"]]
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+  [1m[35m (19.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+Completed 200 OK in 509ms (Views: 5.6ms | ActiveRecord: 83.5ms | Allocations: 3794)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 14:14:01 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 14:14:01 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 14:14:01 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 14:14:01 -0500
+Processing by AdministratorsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by InterviewsController#index as */*
+Processing by MeetingsController#index as */*
+  [1m[36mInterview Load (28.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+Completed 200 OK in 126ms (Views: 97.1ms | ActiveRecord: 28.2ms | Allocations: 1917)
+
+
+  [1m[36mVolunteer Load (136.3ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  [1m[36mMeeting Load (134.9ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+Completed 200 OK in 158ms (Views: 20.6ms | ActiveRecord: 136.3ms | Allocations: 4803)
+
+
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (137.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 178ms (Views: 42.7ms | ActiveRecord: 134.9ms | Allocations: 8758)
+
+
+Completed 200 OK in 198ms (Views: 56.3ms | ActiveRecord: 137.8ms | Allocations: 10111)
+
+
+Started GET "/interviews/" for ::1 at 2020-11-09 16:43:56 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 16:43:56 -0500
+Started GET "/administrators/" for ::1 at 2020-11-09 16:43:56 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 16:43:56 -0500
+Processing by MeetingsController#index as */*
+Processing by InterviewsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mInterview Load (105.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (127.1ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 231ms (Views: 100.0ms | ActiveRecord: 127.1ms | Allocations: 1801)
+
+
+Completed 200 OK in 256ms (Views: 149.1ms | ActiveRecord: 105.2ms | Allocations: 3061)
+
+
+  [1m[36mMeeting Load (297.8ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (277.6ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+Completed 200 OK in 371ms (Views: 63.6ms | ActiveRecord: 297.8ms | Allocations: 8167)
+
+
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 343ms (Views: 65.0ms | ActiveRecord: 277.6ms | Allocations: 10080)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 16:45:21 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 16:45:21 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 16:45:21 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 16:45:21 -0500
+Processing by VolunteersController#index as */*
+Processing by InterviewsController#index as */*
+Processing by MeetingsController#index as */*
+  [1m[36mVolunteer Load (35.5ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+Processing by AdministratorsController#index as */*
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 133ms (Views: 81.9ms | ActiveRecord: 35.5ms | Allocations: 3692)
+
+
+  [1m[36mMeeting Load (89.7ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  [1m[36mInterview Load (106.5ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 168ms (Views: 77.4ms | ActiveRecord: 89.7ms | Allocations: 7232)
+
+
+  [1m[36mAdministrator Load (39.3ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 230ms (Views: 104.1ms | ActiveRecord: 106.5ms | Allocations: 10157)
+
+
+Completed 200 OK in 152ms (Views: 110.1ms | ActiveRecord: 39.3ms | Allocations: 8881)
+
+
+Started POST "/meetings/" for ::1 at 2020-11-09 18:09:20 -0500
+Processing by MeetingsController#create as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"12:00", "patient_name"=>"John Adams", "patient_age"=>"8", "patient_info"=>"He loves Marvel!", "link"=>"zoomlink.com", "volunteer"=>4, "meeting"=>{"date"=>"2020-11-13", "time"=>"12:00", "patient_name"=>"John Adams", "patient_age"=>"8", "patient_info"=>"He loves Marvel!", "link"=>"zoomlink.com"}}
+  [1m[36mVolunteer Load (7.2ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:18:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+  [1m[36mMeeting Create (47.5ms)[0m  [1m[32mINSERT INTO "meetings" ("date", "time", "patient_name", "patient_age", "patient_info", "volunteer_id", "link", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["date", "2020-11-13"], ["time", "12:00:00"], ["patient_name", "John Adams"], ["patient_age", 8], ["patient_info", "He loves Marvel!"], ["volunteer_id", 4], ["link", "zoomlink.com"], ["created_at", "2020-11-09 23:09:22.130100"], ["updated_at", "2020-11-09 23:09:22.130100"]]
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+  [1m[35m (24.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/meetings_controller.rb:19:in `create'
+Completed 200 OK in 739ms (Views: 39.8ms | ActiveRecord: 83.0ms | Allocations: 3542)
+
+
+Started GET "/meetings/" for ::1 at 2020-11-09 18:36:05 -0500
+Started GET "/administrators/" for ::1 at 2020-11-09 18:36:05 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 18:36:05 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 18:36:06 -0500
+Processing by InterviewsController#index as */*
+Processing by MeetingsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mMeeting Load (44.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 127ms (Views: 82.3ms | ActiveRecord: 44.4ms | Allocations: 4508)
+
+
+  [1m[36mInterview Load (128.3ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (129.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (119.1ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 310ms (Views: 179.9ms | ActiveRecord: 129.5ms | Allocations: 7282)
+
+
+Completed 200 OK in 274ms (Views: 121.0ms | ActiveRecord: 128.3ms | Allocations: 6613)
+
+
+Completed 200 OK in 398ms (Views: 276.0ms | ActiveRecord: 119.1ms | Allocations: 9918)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 19:16:42 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 19:16:42 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 19:16:42 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 19:16:42 -0500
+Processing by VolunteersController#index as */*
+Processing by MeetingsController#index as */*
+Processing by AdministratorsController#index as */*
+Processing by InterviewsController#index as */*
+  [1m[36mInterview Load (14.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[36mMeeting Load (74.3ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (41.4ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  [1m[36mAdministrator Load (34.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+Completed 200 OK in 56ms (Views: 40.6ms | ActiveRecord: 14.2ms | Allocations: 2495)
+
+
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 395ms (Views: 244.8ms | ActiveRecord: 74.3ms | Allocations: 9967)
+
+
+Completed 200 OK in 365ms (Views: 278.4ms | ActiveRecord: 41.4ms | Allocations: 9595)
+
+
+Completed 200 OK in 344ms (Views: 308.6ms | ActiveRecord: 34.5ms | Allocations: 10172)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 19:20:36 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 19:20:36 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 19:20:36 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 19:20:36 -0500
+Processing by InterviewsController#index as */*
+Processing by VolunteersController#index as */*
+Processing by MeetingsController#index as */*
+Processing by AdministratorsController#index as */*
+  [1m[36mInterview Load (205.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+  [1m[36mAdministrator Load (191.3ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  [1m[36mMeeting Load (191.6ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (198.0ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 324ms (Views: 132.3ms | ActiveRecord: 191.6ms | Allocations: 7334)
+
+
+Completed 200 OK in 254ms (Views: 43.1ms | ActiveRecord: 205.1ms | Allocations: 2976)
+
+
+Completed 200 OK in 382ms (Views: 181.0ms | ActiveRecord: 198.0ms | Allocations: 9490)
+
+
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+Completed 200 OK in 395ms (Views: 202.6ms | ActiveRecord: 191.3ms | Allocations: 9971)
+
+
+Started PATCH "/interviews/12" for ::1 at 2020-11-09 19:39:52 -0500
+Processing by InterviewsController#update as */*
+  Parameters: {"date"=>"2020-11-09", "time"=>"10:00", "id"=>"12", "interview"=>{"date"=>"2020-11-09", "time"=>"10:00"}}
+  [1m[36mInterview Load (26.1ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:29:in `update'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mVolunteer Load (6.2ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mAdministrator Load (0.7ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators" WHERE "administrators"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mInterview Update (41.2ms)[0m  [1m[33mUPDATE "interviews" SET "time" = $1 WHERE "interviews"."id" = $2[0m  [["time", "10:00"], ["id", 12]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+Completed 200 OK in 1273ms (Views: 3.5ms | ActiveRecord: 94.0ms | Allocations: 8076)
+
+
+Started PATCH "/interviews/12" for ::1 at 2020-11-09 21:10:34 -0500
+Processing by InterviewsController#update as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"14:00", "id"=>"12", "interview"=>{"date"=>"2020-11-13", "time"=>"14:00"}}
+  [1m[36mInterview Load (8.3ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:29:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mVolunteer Load (0.6ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mAdministrator Load (19.0ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators" WHERE "administrators"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mInterview Update (33.1ms)[0m  [1m[33mUPDATE "interviews" SET "date" = $1, "time" = $2 WHERE "interviews"."id" = $3[0m  [["date", "2020-11-13"], ["time", "14:00"], ["id", 12]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[35m (23.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+Completed 200 OK in 145ms (Views: 2.5ms | ActiveRecord: 84.8ms | Allocations: 5761)
+
+
+Started PATCH "/interviews/12" for ::1 at 2020-11-09 21:10:40 -0500
+Processing by InterviewsController#update as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"14:00", "id"=>"12", "interview"=>{"date"=>"2020-11-13", "time"=>"14:00"}}
+  [1m[36mInterview Load (2.7ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:29:in `update'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mVolunteer Load (0.5ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mAdministrator Load (2.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators" WHERE "administrators"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+Completed 200 OK in 27ms (Views: 0.3ms | ActiveRecord: 6.8ms | Allocations: 4823)
+
+
+Started PATCH "/interviews/12" for ::1 at 2020-11-09 21:10:52 -0500
+Started PATCH "/volunteers/13" for ::1 at 2020-11-09 21:10:52 -0500
+Processing by InterviewsController#update as */*
+  Parameters: {"notes"=>"He was a good candidate.", "id"=>"12", "interview"=>{"notes"=>"He was a good candidate."}}
+  [1m[36mInterview Load (1.2ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews" WHERE "interviews"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:29:in `update'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mVolunteer Load (0.7ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mAdministrator Load (6.1ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators" WHERE "administrators"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[36mInterview Update (0.9ms)[0m  [1m[33mUPDATE "interviews" SET "notes" = $1 WHERE "interviews"."id" = $2[0m  [["notes", "He was a good candidate."], ["id", 12]]
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:30:in `update'
+Completed 200 OK in 66ms (Views: 1.3ms | ActiveRecord: 20.6ms | Allocations: 5609)
+
+
+Processing by VolunteersController#update as */*
+  Parameters: {"approved"=>true, "id"=>"13", "volunteer"=>{"approved"=>true}}
+  [1m[36mVolunteer Load (0.6ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/volunteers_controller.rb:28:in `update'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/volunteers_controller.rb:29:in `update'
+  [1m[36mVolunteer Update (19.5ms)[0m  [1m[33mUPDATE "volunteers" SET "approved" = $1, "updated_at" = $2 WHERE "volunteers"."id" = $3[0m  [["approved", true], ["updated_at", "2020-11-10 02:10:53.193606"], ["id", 13]]
+  ↳ app/controllers/volunteers_controller.rb:29:in `update'
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/volunteers_controller.rb:29:in `update'
+Completed 200 OK in 81ms (Views: 1.6ms | ActiveRecord: 27.3ms | Allocations: 3499)
+
+
+Started GET "/administrators/" for ::1 at 2020-11-09 21:21:39 -0500
+Started GET "/volunteers/" for ::1 at 2020-11-09 21:21:39 -0500
+Started GET "/meetings/" for ::1 at 2020-11-09 21:21:39 -0500
+Started GET "/interviews/" for ::1 at 2020-11-09 21:21:39 -0500
+Processing by MeetingsController#index as */*
+Processing by AdministratorsController#index as */*
+Processing by InterviewsController#index as */*
+Processing by VolunteersController#index as */*
+  [1m[36mAdministrator Load (10.2ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/administrators_controller.rb:5:in `index'
+  [1m[36mVolunteer Load (5.3ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers"[0m
+Completed 200 OK in 35ms (Views: 24.4ms | ActiveRecord: 10.2ms | Allocations: 2011)
+
+
+  [1m[36mInterview Load (10.0ms)[0m  [1m[34mSELECT "interviews".* FROM "interviews"[0m
+  [1m[36mMeeting Load (21.4ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings"[0m
+  ↳ app/controllers/meetings_controller.rb:5:in `index'
+  ↳ app/controllers/volunteers_controller.rb:5:in `index'
+Completed 200 OK in 109ms (Views: 81.9ms | ActiveRecord: 21.4ms | Allocations: 7794)
+
+
+  ↳ app/controllers/interviews_controller.rb:5:in `index'
+Completed 200 OK in 97ms (Views: 87.8ms | ActiveRecord: 5.3ms | Allocations: 8685)
+
+
+Completed 200 OK in 112ms (Views: 99.7ms | ActiveRecord: 10.0ms | Allocations: 10107)
+
+
+Started PATCH "/meetings/7" for ::1 at 2020-11-09 21:41:08 -0500
+Processing by MeetingsController#update as */*
+  Parameters: {"notes"=>"We played Mario Kart on the Nintendo Switch. He was amazing. Meeting was cut short when his lunch came. Overall great time.", "id"=>"7", "meeting"=>{"notes"=>"We played Mario Kart on the Nintendo Switch. He was amazing. Meeting was cut short when his lunch came. Overall great time."}}
+  [1m[36mMeeting Load (31.7ms)[0m  [1m[34mSELECT "meetings".* FROM "meetings" WHERE "meetings"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:28:in `update'
+  [1m[35m (6.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/meetings_controller.rb:29:in `update'
+  [1m[36mVolunteer Load (0.7ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/meetings_controller.rb:29:in `update'
+  [1m[36mMeeting Update (41.7ms)[0m  [1m[33mUPDATE "meetings" SET "notes" = $1, "updated_at" = $2 WHERE "meetings"."id" = $3[0m  [["notes", "We played Mario Kart on the Nintendo Switch. He was amazing. Meeting was cut short when his lunch came. Overall great time."], ["updated_at", "2020-11-10 02:41:08.959548"], ["id", 7]]
+  ↳ app/controllers/meetings_controller.rb:29:in `update'
+  [1m[35m (24.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/meetings_controller.rb:29:in `update'
+Completed 200 OK in 240ms (Views: 8.2ms | ActiveRecord: 105.7ms | Allocations: 5134)
+
+
+Started POST "/volunteers/" for ::1 at 2020-11-09 21:49:04 -0500
+Processing by VolunteersController#create as */*
+  Parameters: {"name"=>"John Smith", "age"=>"19", "email"=>"johnsmith@gmail.com", "password"=>"[FILTERED]", "profile_image"=>#<ActionDispatch::Http::UploadedFile:0x00007fb99546e758 @tempfile=#<Tempfile:/var/folders/yh/nc9qzdz96nv66x5jrq7tzzpm0000gn/T/RackMultipart20201109-53512-xmazo.JPG>, @original_filename="Headshot.JPG", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"profile_image\"; filename=\"Headshot.JPG\"\r\nContent-Type: image/jpeg\r\n">}
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[36mVolunteer Create (34.9ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "John Smith"], ["age", 19], ["email", "johnsmith@gmail.com"], ["password", "1234"], ["approved", false], ["profile_image", "http://res.cloudinary.com/childlifeappmod5project/image/upload/v1604976548/btqojkg7zcimjxa4hq9g.jpg"], ["created_at", "2020-11-10 02:49:08.938551"], ["updated_at", "2020-11-10 02:49:08.938551"]]
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[35m (13.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+Completed 200 OK in 3390ms (Views: 3.4ms | ActiveRecord: 55.5ms | Allocations: 9586)
+
+
+Started POST "/interviews/" for ::1 at 2020-11-09 22:34:19 -0500
+Processing by InterviewsController#create as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"10:00", "volunteer_id"=>14, "interview"=>{"date"=>"2020-11-13", "time"=>"10:00", "volunteer_id"=>14}}
+  [1m[36mVolunteer Load (9.4ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:18:in `create'
+  [1m[36mAdministrator Load (1.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/interviews_controller.rb:19:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[36mInterview Create (45.7ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", "2020-11-13"], ["time", "10:00"], ["volunteer_id", 14], ["administrator_id", 1]]
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[35m (19.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+Completed 200 OK in 325ms (Views: 8.6ms | ActiveRecord: 77.4ms | Allocations: 3852)
+
+
+Started POST "/volunteers/" for ::1 at 2020-11-09 22:48:33 -0500
+Processing by VolunteersController#create as */*
+  Parameters: {"name"=>"Alan Jang", "age"=>"22", "email"=>"alan@jang.com", "password"=>"[FILTERED]", "profile_image"=>#<ActionDispatch::Http::UploadedFile:0x00007fb9962e7be0 @tempfile=#<Tempfile:/var/folders/yh/nc9qzdz96nv66x5jrq7tzzpm0000gn/T/RackMultipart20201109-53512-d938dc.JPG>, @original_filename="Headshot.JPG", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"profile_image\"; filename=\"Headshot.JPG\"\r\nContent-Type: image/jpeg\r\n">}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[36mVolunteer Create (170.7ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Alan Jang"], ["age", 22], ["email", "alan@jang.com"], ["password", "1234"], ["approved", false], ["profile_image", "http://res.cloudinary.com/childlifeappmod5project/image/upload/v1604980115/jl24ifa4y4qufubyrrzc.jpg"], ["created_at", "2020-11-10 03:48:36.634739"], ["updated_at", "2020-11-10 03:48:36.634739"]]
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[35m (79.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+Completed 200 OK in 3202ms (Views: 3.5ms | ActiveRecord: 250.3ms | Allocations: 9575)
+
+
+Started POST "/interviews/" for ::1 at 2020-11-09 22:49:08 -0500
+Processing by InterviewsController#create as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"10:30", "volunteer_id"=>15, "interview"=>{"date"=>"2020-11-13", "time"=>"10:30", "volunteer_id"=>15}}
+  [1m[36mVolunteer Load (21.7ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:18:in `create'
+  [1m[36mAdministrator Load (2.5ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/interviews_controller.rb:19:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[36mInterview Create (109.5ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", "2020-11-13"], ["time", "10:30"], ["volunteer_id", 15], ["administrator_id", 1]]
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+Completed 200 OK in 228ms (Views: 1.9ms | ActiveRecord: 152.8ms | Allocations: 3836)
+
+
+Started POST "/volunteers/" for ::1 at 2020-11-09 22:50:32 -0500
+Processing by VolunteersController#create as */*
+  Parameters: {"name"=>"Christina Park", "age"=>"28", "email"=>"christinapark814@gmail.com", "password"=>"[FILTERED]", "profile_image"=>#<ActionDispatch::Http::UploadedFile:0x00007fb995f01490 @tempfile=#<Tempfile:/var/folders/yh/nc9qzdz96nv66x5jrq7tzzpm0000gn/T/RackMultipart20201109-53512-fdkz40.JPG>, @original_filename="Headshot.JPG", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"profile_image\"; filename=\"Headshot.JPG\"\r\nContent-Type: image/jpeg\r\n">}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[36mVolunteer Create (1.6ms)[0m  [1m[32mINSERT INTO "volunteers" ("name", "age", "email", "password", "approved", "profile_image", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Christina Park"], ["age", 28], ["email", "christinapark814@gmail.com"], ["password", "1234"], ["approved", false], ["profile_image", "http://res.cloudinary.com/childlifeappmod5project/image/upload/v1604980234/e07yuz6tscojg2ygznsg.jpg"], ["created_at", "2020-11-10 03:50:35.003118"], ["updated_at", "2020-11-10 03:50:35.003118"]]
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+  [1m[35m (7.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/volunteers_controller.rb:19:in `create'
+Completed 200 OK in 2589ms (Views: 2.4ms | ActiveRecord: 9.0ms | Allocations: 9540)
+
+
+Started POST "/interviews/" for ::1 at 2020-11-09 22:50:49 -0500
+Processing by InterviewsController#create as */*
+  Parameters: {"date"=>"2020-11-13", "time"=>"13:30", "volunteer_id"=>16, "interview"=>{"date"=>"2020-11-13", "time"=>"13:30", "volunteer_id"=>16}}
+  [1m[36mVolunteer Load (0.7ms)[0m  [1m[34mSELECT "volunteers".* FROM "volunteers" WHERE "volunteers"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  ↳ app/controllers/interviews_controller.rb:18:in `create'
+  [1m[36mAdministrator Load (0.8ms)[0m  [1m[34mSELECT "administrators".* FROM "administrators"[0m
+  ↳ app/controllers/interviews_controller.rb:19:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[36mInterview Create (7.5ms)[0m  [1m[32mINSERT INTO "interviews" ("date", "time", "volunteer_id", "administrator_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["date", "2020-11-13"], ["time", "13:30"], ["volunteer_id", 16], ["administrator_id", 1]]
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+  [1m[35m (13.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/interviews_controller.rb:20:in `create'
+Completed 200 OK in 52ms (Views: 0.4ms | ActiveRecord: 22.5ms | Allocations: 3736)
+
+

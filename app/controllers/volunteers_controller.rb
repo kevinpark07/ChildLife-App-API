@@ -15,6 +15,7 @@ class VolunteersController < ApplicationController
     end
 
     def create
+        image = Cloudinary::Uploader.upload(params[:profile_image])
         vol = Volunteer.create!(name: params[:name], age: params[:age], email: params[:email], password: params[:password], profile_image: image["url"], approved: false)
         if vol.save
             render json: vol
@@ -25,7 +26,8 @@ class VolunteersController < ApplicationController
 
     def update
         vol = Volunteer.find(params[:id])
-        vol.update!(vol_params)
+        image = Cloudinary::Uploader.upload(params[:profile_image])
+        vol.update!(name: params[:name], age: params[:age], email: params[:email], password: params[:password], profile_image: image["url"], approved: params[:approved])
         if vol.save
             render json: vol
         else

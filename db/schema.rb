@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2020_11_02_212404) do
   end
 
   create_table "meetings", force: :cascade do |t|
-    t.date "date"
-    t.time "time"
+    t.string "date"
+    t.string "time"
     t.string "patient_name"
     t.integer "patient_age"
     t.text "patient_info"
